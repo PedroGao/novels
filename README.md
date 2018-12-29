@@ -104,5 +104,22 @@ git push origin master
 因此，我们若要继续写小说，我们需再开一个`feature`分支，当然你也可以以其它方式命名，如此时我们需要写完第一章小说，因此我们开一个`feature-cp1`的分支。
 
 ```bash
-
+git checkout -b feature-cp1
 ```
+
+此时，我们正在`feature-cp1`这个分支上，这也是我们进行开发的分支。所以我们继续写完我们的第一章：
+
+```sh
+# cp1.txt
+如同千万年天上的宫阙中等待苍天何时寂。
+几回恍惚与魂惜，而人间再也没有若只如初见。
+```
+
+此时，我们已经写完了第一章，如果是开发，请确保你新完成的`feature`通过了开发测试，并有良好的代码规范。
+
+我们完成了`feature-cp1`分支的开发，那么是直接把该分支合并到`develop`上吗，当然不是，我们**不允许**直接合并到开发分支上，因此当你完成一个分支的开发时，
+请提`Pull Request`。
+
+因此，此时将你的`feature-cp1`分支推送至远程`github`（请确保你的最新`develop`分支也在远程仓库中），测试在 github 页面上点击`Compare & Pull Request`。
+
+记住，是给`develop`分支提 Pull Request。
