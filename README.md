@@ -123,3 +123,23 @@ git checkout -b feature-cp1
 因此，此时将你的`feature-cp1`分支推送至远程`github`（请确保你的最新`develop`分支也在远程仓库中），测试在 github 页面上点击`Compare & Pull Request`。
 
 记住，是给`develop`分支提 Pull Request。
+
+如下图：
+
+![one](./imgs/one.png)
+
+![two](./imgs/two.png)
+
+到此，你已经提交了一个 PR，团队的其它有会收到这个 PR，并进行相关的审核。
+
+![three](./imgs/three.png)
+
+当审核通过后，请在本地拉取远程的`develop`分支，本地的分支会得到相应的更新。
+
+- 发布：发布一个版本
+
+`develop`分支上的新功能开发完毕后，我们新建一个`release`分支来进行某个版本的发布。注意，这里另开一个分支是为了不影响`develop`分支上的其它流程。
+
+```bash
+git branch -b release-0.1
+```
