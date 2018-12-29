@@ -76,8 +76,80 @@ cp1.txt
 ```
 git add .
 git commit -m ******
-git remote add origin https://github.com/PedroGao/novels.git
-git push -u origin master
 ```
 
-**注意，git commit 需要良好的规范，请查阅相关的资料以规范的格式提交[查看](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)**
+**注意，git commit 必须要有良好的规范，请查阅相关的资料以规范的格式提交[查看](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)**
+
+我们可以通过`git log`查看刚才的提交：
+
+```sh
+commit c75d280516f32db0a2f2901d0d65156fa4ee8de3 (HEAD -> master)
+Author: PedroGao <gaopedro@163.com>
+Date:   Sat Dec 29 14:21:42 2018 +0800
+
+    docs(novels): add origin chapter
+
+    start writing novel from first chapter
+```
+
+```bash
+git remote add origin https://github.com/PedroGao/novels.git
+git push origin master
+```
+
+- 开发： 进行一个项目的开发（在这里我们以小说的书写为例）
+
+原则上`master`分支上不进行任何开发，所以我们新建`develop`分支。注意，`develop`分支也不是用于开发的，而是用于测试、合并、审核等其他操作的。
+
+因此，我们若要继续写小说，我们需再开一个`feature`分支，当然你也可以以其它方式命名，如此时我们需要写完第一章小说，因此我们开一个`feature-cp1`的分支。
+
+```bash
+git checkout -b feature-cp1
+```
+
+此时，我们正在`feature-cp1`这个分支上，这也是我们进行开发的分支。所以我们继续写完我们的第一章：
+
+```sh
+# cp1.txt
+如同千万年天上的宫阙中等待苍天何时寂。
+几回恍惚与魂惜，而人间再也没有若只如初见。
+```
+
+此时，我们已经写完了第一章，如果是开发，请确保你新完成的`feature`通过了开发测试，并有良好的代码规范。
+
+我们完成了`feature-cp1`分支的开发，那么是直接把该分支合并到`develop`上吗，当然不是，我们**不允许**直接合并到开发分支上，因此当你完成一个分支的开发时，
+请提`Pull Request`。
+
+因此，此时将你的`feature-cp1`分支推送至远程`github`（请确保你的最新`develop`分支也在远程仓库中），测试在 github 页面上点击`Compare & Pull Request`。
+
+记住，是给`develop`分支提 Pull Request。
+
+如下图：
+
+![one](./imgs/one.png)
+
+![two](./imgs/two.png)
+
+到此，你已经提交了一个 PR，团队的其它有会收到这个 PR，并进行相关的审核。
+
+![three](./imgs/three.png)
+
+当审核通过后，请在本地拉取远程的`develop`分支，本地的分支会得到相应的更新。
+
+此时，`feature-cp1`分支已经完成了它的任务，你可以选择性的删除这个分支。
+
+- 发布：发布一个版本
+
+`develop`分支上的新功能开发完毕后，我们新建一个`release`分支来进行某个版本的发布。注意，这里另开一个分支是为了不影响`develop`分支上的其它流程。
+
+```bash
+git checkout -b release-0.1
+```
+
+在新建的`release-0.1`这个分支上，原则上不允许新的功能的添加，应集中精力测试，修复 bug，待所有完毕后将这个 release-0.1 分支合并到`master`和`develop`分支上。
+
+此时，通过`git log`查看提交历史，你会发现 commit 的记录有太多的东西重复甚至错误，因此我们需要使用`git rebase`来合并一些没有必要的 commit message。生成一个干净的 log。详细操作参考[rebase](https://www.jianshu.com/p/4a8f4af4e803)。
+
+并在 master 分支发布一个新版本——release-0.1。
+
+[GitHub](https://github.com/PedroGao/novels)
