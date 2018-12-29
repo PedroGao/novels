@@ -76,8 +76,27 @@ cp1.txt
 ```
 git add .
 git commit -m ******
-git remote add origin https://github.com/PedroGao/novels.git
-git push -u origin master
 ```
 
-**注意，git commit 需要良好的规范，请查阅相关的资料以规范的格式提交[查看](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)**
+**注意，git commit 必须要有良好的规范，请查阅相关的资料以规范的格式提交[查看](http://www.ruanyifeng.com/blog/2016/01/commit_message_change_log.html)**
+
+我们可以通过`git log`查看刚才的提交：
+
+```sh
+commit c75d280516f32db0a2f2901d0d65156fa4ee8de3 (HEAD -> master)
+Author: PedroGao <gaopedro@163.com>
+Date:   Sat Dec 29 14:21:42 2018 +0800
+
+    docs(novels): add origin chapter
+
+    start writing novel from first chapter
+```
+
+```bash
+git remote add origin https://github.com/PedroGao/novels.git
+git push origin master
+```
+
+- 开发： 进行一个项目的开发（在这里我们以小说的书写为例）
+
+原则上`master`分支上不进行任何开发，所以我们新建`develop`分支
