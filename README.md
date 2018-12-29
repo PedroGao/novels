@@ -136,10 +136,20 @@ git checkout -b feature-cp1
 
 当审核通过后，请在本地拉取远程的`develop`分支，本地的分支会得到相应的更新。
 
+此时，`feature-cp1`分支已经完成了它的任务，你可以选择性的删除这个分支。
+
 - 发布：发布一个版本
 
 `develop`分支上的新功能开发完毕后，我们新建一个`release`分支来进行某个版本的发布。注意，这里另开一个分支是为了不影响`develop`分支上的其它流程。
 
 ```bash
-git branch -b release-0.1
+git checkout -b release-0.1
 ```
+
+在新建的`release-0.1`这个分支上，原则上不允许新的功能的添加，应集中精力测试，修复 bug，待所有完毕后将这个 release-0.1 分支合并到`master`和`develop`分支上。
+
+此时，通过`git log`查看提交历史，你会发现 commit 的记录有太多的东西重复甚至错误，因此我们需要使用`git rebase`来合并一些没有必要的 commit message。生成一个干净的 log。详细操作参考[rebase](https://www.jianshu.com/p/4a8f4af4e803)。
+
+并在 master 分支发布一个新版本——release-0.1。
+
+[GitHub](https://github.com/PedroGao/novels)
